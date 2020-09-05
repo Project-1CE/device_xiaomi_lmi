@@ -1,2 +1,5 @@
+# Camera
+camera.disable_zsl_mode=true
+
 # DPM
 persist.vendor.dpm.feature=11

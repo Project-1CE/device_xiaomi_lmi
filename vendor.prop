@@ -96,9 +96,14 @@ vendor.voice.path.for.pcm.voip=true
 persist.vendor.qcom.bluetooth.soc=hastings
 
 # Camera
-camera.disable_zsl_mode=true
+persist.camera.eis.enable=1
 persist.camera.gyro.disable=0
-vendor.camera.aux.packagelist=org.lineageos.snap,org.codeaurora.snapcam
+persist.camera.is_mode=4
+persist.vendor.camera.oissr.debug=1
+persist.vendor.camera.privapp.list=org.codeaurora.snapcam,com.google.android.GoogleCamera,com.google.android.apps.cameralite
+vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.google.android.GoogleCamera,com.google.android.apps.cameralite
+vendor.debug.camera.eisv2enable=1
+vendor.debug.camera.eisv3enable=1
 
 # CNE
 persist.vendor.cne.feature=1
