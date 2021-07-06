@@ -226,3 +226,7 @@ ro.soc.model=SM8250
 
 # Time
 persist.timed.enable=true
+
+# Volume steps
+ro.config.media_vol_steps=30
+ro.config.vc_call_vol_steps=11
