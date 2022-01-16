@@ -16,7 +16,7 @@ $(call inherit-product, vendor/xiaomi/lmi/lmi-vendor.mk)
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay-ice
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
@@ -26,10 +26,6 @@ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     hardware/xiaomi
-
-# Boot animation
-TARGET_SCREEN_HEIGHT := 2400
-TARGET_SCREEN_WIDTH := 1080
 
 # Shipping API level
 PRODUCT_SHIPPING_API_LEVEL := 29
@@ -235,10 +231,6 @@ PRODUCT_PACKAGES += \
     libhwbinder \
     libhwbinder.vendor
 
-# HotwordEnrollement
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/privapp-permissions-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-hotword.xml
-
 # Init scripts
 PRODUCT_PACKAGES += \
     fstab.qcom \
@@ -250,8 +242,6 @@ PRODUCT_PACKAGES += \
     init.qcom.post_boot.sh \
     init.qcom.rc \
     init.qcom.sh \
-    init.qcom.usb.rc \
-    init.qcom.usb.sh \
     init.recovery.qcom.rc \
     init.target.rc \
     init.xiaomi.rc \
@@ -367,18 +357,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.power-service-qti
 
-# QMI
-PRODUCT_PACKAGES += \
-    libjson
+# Platform
+TARGET_BOARD_PLATFORM := msmnile
 
 # QTI
-PRODUCT_PACKAGES += \
-    libqti_vndfwk_detect.vendor \
-    libvndfwk_detect_jni.qti.vendor
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-qti.xml \
-    $(LOCAL_PATH)/configs/qti_whitelist.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/qti_whitelist.xml
+TARGET_COMMON_QTI_COMPONENTS := \
+    bt \
+    display \
+    gps \
+    perf \
+    telephony \
+    usb
 
 # RenderScript
 PRODUCT_PACKAGES += \
@@ -405,19 +394,6 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-service \
     libsensorndkbridge
 
-# Telephony
-PRODUCT_PACKAGES += \
-    ims-ext-common \
-    ims_ext_common.xml \
-    qti-telephony-hidl-wrapper \
-    qti_telephony_hidl_wrapper.xml \
-    qti-telephony-utils \
-    qti_telephony_utils.xml \
-    telephony-ext
-
-PRODUCT_BOOT_JARS += \
-    telephony-ext
-
 # Thermal
 PRODUCT_PACKAGES += \
     android.hardware.thermal@2.0-service.qti
@@ -425,10 +401,6 @@ PRODUCT_PACKAGES += \
 # Touchscreen
 PRODUCT_PACKAGES += \
     libtinyxml2
-
-# USB
-PRODUCT_PACKAGES += \
-    android.hardware.usb@1.2-service-qti
 
 # Vendor service manager
 PRODUCT_PACKAGES += \
@@ -440,6 +412,9 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/vibrator/etc/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
+
+# VNDK
+PRODUCT_EXTRA_VNDK_VERSIONS := 30
 
 # WiFi
 PRODUCT_PACKAGES += \
