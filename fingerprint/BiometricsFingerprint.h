@@ -94,6 +94,7 @@ public:
     Return<void> onFingerUp() override;
 
 private:
+    sp<IXiaomiFingerprint> xiaomiFingerprintService;
     sp<ITouchFeature> xiaomiTouchFeatureService;
 };
 
